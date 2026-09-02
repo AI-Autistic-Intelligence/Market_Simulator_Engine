@@ -1,0 +1,23 @@
+==================================================
+🏆 RISULTATI BACKTEST 1000 MERCATI SINTETICI 🏆
+==================================================
+Totale Trades Effettuati : 894446
+Totale Vittorie          : 462957
+Win Rate Finale          : 51.76%
+Profitto Netto Globale   : -162797.94407 punti
+==================================================
+Mercati Migliori (Top 5 per Profitto):
+ - market_0086: Profitto 52.26165 | WR: 66.06%
+ - market_0912: Profitto 49.67517 | WR: 67.74%
+ - market_0211: Profitto 47.09235 | WR: 68.39%
+ - market_0166: Profitto 39.4795 | WR: 70.51%
+ - market_0001: Profitto 34.40289 | WR: 66.7%
+
+Mercati Peggiori (Flop 5 per Profitto):
+ - market_0164: Profitto -702.39405 | WR: 51.05%
+ - market_0659: Profitto -620.38108 | WR: 45.91%
+ - market_0334: Profitto -556.78311 | WR: 49.61%
+ - market_0646: Profitto -540.8209 | WR: 49.61%
+ - market_0201: Profitto -540.63155 | WR: 49.32%
+
+Statistiche dettagliate mercato per mercato esportate in 'backtest_detailed_report.csv'.
