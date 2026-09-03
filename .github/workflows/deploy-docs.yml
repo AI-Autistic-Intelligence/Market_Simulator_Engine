@@ -1,0 +1,55 @@
+name: Deploy Enterprise Docs to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - 'docs-site/**'
+      - 'README.md'
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    name: Deploy Docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Checkout Docusaurus Theme
+        uses: actions/checkout@v4
+        with:
+          repository: Nek97/Docusaurus_Autistic_Theme
+          token: ${{ secrets.THEME_ACCESS_TOKEN }}
+          path: Docusaurus_Autistic_Theme
+          
+      - name: Inject Enterprise Assets
+        run: |
+          cp -r Docusaurus_Autistic_Theme/static/img/* docs-site/static/img/
+          cp Docusaurus_Autistic_Theme/src/css/custom.css docs-site/src/css/custom.css
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm
+          cache-dependency-path: docs-site/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: ./docs-site
+
+      - name: Build Docusaurus
+        run: npm run build
+        working-directory: ./docs-site
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs-site/build
+          publish_branch: gh-pages
